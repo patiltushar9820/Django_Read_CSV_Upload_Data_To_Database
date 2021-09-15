@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Task App</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#4DB6AC;">
+<nav class="navbar navbar-light" style="background-color:#FF0033;">
+	
+	<a class="navbar-link btn-lg" href="{% url 'index' %}" style="background-color:#FFCC33;color:#000000;">View Data</a>
+    <a href="{% url 'admin:index' %}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">Django Admin</a>
+    <a href="{% url 'upload-data' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Add Manually Data</a>
+	<a href="{% url 'view-graph' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">View Graph</a>
+	<a href="{% url 'view-file' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Select File & View Graph</a>
+	<a href="{% url 'csv_data_upload' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Upload CSV File To DB</a>
+
+</nav>
+<br>
+{% block content %}
+<div class="container">
+	<table class="table table-striped"  align="center">
+		<thead>
+		  <tr>
+			<th>Date</th>
+			<th>Open</th>
+			<th>High</th>
+			<th>Low</th>
+			<th>Close</th>
+			<th>WAP</th>
+			<th>No_Of_Shares</th>
+			<th>No_Of_Trades</th>
+			<th>Total_Turnover</th>
+			<th>Deliverable</th>
+			<th>Per_Of_Del_Qty_To_Trd_Qty</th>
+			<th>Spread_H_L</th>
+			<th>Spread_C_O</th>
+			<th>Diff_Bet_open_high</th>
+
+		  </tr>
+		</thead>
+		<tbody>
+			{% for data in shelf %}
+			
+		  <tr>
+			<td>{{data.Date1 }}</td>
+			<td>{{data.Open}}
+			<td>{{data.High }}</td>
+			<td>{{data.Low}}</td>
+			<td>{{ data.Close }}</td>
+			<td>{{data.WAP}}</td>
+			<td>{{ data.No_Of_Shares }}</td>
+			<td>{{data.No_Of_Trades}}
+			<td>{{data.Total_Turnover }}</td>
+			<td>{{data.Deliverable}}</td>
+			<td>{{data.Per_Of_Del_Qty_To_Trd_Qty }}</td>
+			<td>{{data.Spread_H_L}}</td>
+			<td>{{data.Spread_C_O}}</td>
+
+		  </tr>
+		  {% endfor %} 
+		</tbody>
+	</table>	
+	</div>
+	{% endblock %}
+	</body>
+	</html>
+
+
